@@ -6,10 +6,7 @@ export default class SearchResults extends Component {
   constructor(props){
     super(props)
     this.state = {
-      DarkSky: [],
-      Movie: [],
-      EventBrite: [],
-      Yelp: []
+      
     }
   }
 

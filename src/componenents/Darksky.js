@@ -1,18 +1,14 @@
 import React, { Component } from 'react'
 
-export default class Darksky extends Component {
-  constructor(props){
-    super(props)
-    this.state = {
+export default class DarkSky extends Component {
 
-    }
-  }
 
-  
   render() {
+
     return (
       <div>
-        
+        <h4>{this.props.forecast.time}</h4>
+        <p>{this.props.forecast.forecast}</p>
       </div>
     )
   }
