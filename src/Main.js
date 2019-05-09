@@ -1,46 +1,28 @@
 import React, { Component } from 'react'
-import superagent from 'superagent';
-import SERVER_URL from './constant/server';
-import Search from './Search.js';
-import Map from './Map.js';
-import Result from './Result.js';
+import SearchForm from './SearchForm.js';
+import Map from './Map';
+
 
 
 export default class Main extends Component {
   constructor(props){
     super(props);
     this.state = {
-      long: 0,
-      lat: 0,
-    }
+      queryData: '',
+      lat: 47.6062095,
+      long: -122.3320708
+    };
   }
 
-  componentDidMount = () => {
-    this.getLocation();
+  handleForm = (results) => {
+    this.setState({ queryData: results.body.search_query, lat: results.body.latitude, long: results.body.longitude })
   }
-
-  getLocation = () => {
-    superagent.get(`${SERVER_URL}/location`)
-    .then(result => {
-      console.log(result)
-    })
-    .catch(error => {
-      console.log(`There was an error with your request to the backend ${error}`)
-    });
-  }
-  
-
 
   render() {
     return (
       <div>
-        <Search />
-        <Map long={this.state.long} lat={this.state.lat} />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
-        <Result />
+        <SearchForm handler={this.handleForm} />
+        <Map lat={this.state.lat} long={this.state.long} />
       </div>
     )
   }
